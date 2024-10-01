@@ -1,7 +1,12 @@
+<script setup lang="ts">
+  const config = useRuntimeConfig()
+
+</script>
+
 <template>
   <div>
     <div>
-      asdsadssssss11
+      ENV_TEXT:{{ config.public.text }}
     </div>
     <NuxtRouteAnnouncer />
     <NuxtWelcome />
