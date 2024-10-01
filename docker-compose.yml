@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: frontend
+    restart: on-failure
+    build:
+      context: .
+      args:
+        # DOCKER_NODE_VERSION 會去讀取 .env 裡面
+        - NODE_VERSION=${DOCKER_NODE_VERSION}
+    volumes:
+      - .:/app
