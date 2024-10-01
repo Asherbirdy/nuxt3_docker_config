@@ -1,9 +1,9 @@
 # 
 ARG PORT
-ARG NODE_VERSION
 
 # Use a specific Node.js version
-FROM node:${NODE_VERSION}
+# https://nuxt.com/docs/getting-started/installation
+FROM node:18.18.0
 
 # Set the working directory
 WORKDIR /usr/src/app
