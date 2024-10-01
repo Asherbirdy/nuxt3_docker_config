@@ -1,5 +1,35 @@
-FROM node:18.18.0 as base
-WORKDIR /app
+# 
+ARG PORT
+ARG NODE_VERSION
 
-# By default, just keep the container running
-CMD ["tail", "-f", "/dev/null"]
+# Use a specific Node.js version
+FROM node:${NODE_VERSION}
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Copy package.json and pnpm-lock.yaml
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy the rest of the code
+COPY . .
+
+# Remove existing node_modules and Install dependencies
+RUN rm -rf node_modules
+RUN pnpm install
+
+# Optionally install TypeScript
+RUN pnpm install typescript
+
+# Update caniuse-lite
+RUN npx update-browserslist-db@latest
+
+# Expose the port the app runs on
+EXPOSE ${PORT}
+
+# Command to run the application
+CMD ["npx", "nuxi", "dev"]
