@@ -2,7 +2,6 @@ version: '3.8'
 services:
   frontend:
     container_name: frontend
-    restart: on-failure
     build:
       dockerfile: Dockerfile/Dockerfile
       context: .
@@ -12,3 +11,10 @@ services:
     ports:
       # 把本機的 port 跟 container 的 port 綁定
       - '${NITRO_PORT}:${NITRO_PORT}'  
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    # env_file:
+    #   - .env.development
+    # environment:
+    #   - NODE_ENV=development  
