@@ -6,12 +6,11 @@ services:
       dockerfile: Dockerfile/Dockerfile
       context: .
       args:
-        # DOCKER_NODE_VERSION 會去讀取 .env 裡面
         - PORT=${NITRO_PORT}
     ports:
-      # 把本機的 port 跟 container 的 port 綁定
       - '${NITRO_PORT}:${NITRO_PORT}'  
     volumes:
+      # 增價這個才能即時編輯的樣子
       - .:/usr/src/app
       - /usr/src/app/node_modules
     # env_file:
