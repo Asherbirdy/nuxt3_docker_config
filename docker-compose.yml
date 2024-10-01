@@ -8,7 +8,6 @@ services:
       context: .
       args:
         # DOCKER_NODE_VERSION 會去讀取 .env 裡面
-        - NODE_VERSION=${DOCKER_NODE_VERSION}
         - PORT=${NITRO_PORT}
     ports:
       # 把本機的 port 跟 container 的 port 綁定
