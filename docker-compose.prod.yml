@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: production-frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile/prod.Dockerfile
+      context: .
+      args:
+        - PORT=${NITRO_PORT}
+    ports:
+      - '${NITRO_PORT}:${NITRO_PORT}'
+    environment:
+      - NODE_ENV=production
+    command: node .output/server/index.mjs
